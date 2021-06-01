@@ -668,14 +668,14 @@ const VideoPlayer = (props: Props) => {
           pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'}
           style={{
             position: 'absolute',
-            bottom: 0,
+            bottom: 100,
             width: videoWidth,
             opacity: controlsOpacity,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingBottom: 4,
-            paddingHorizontal: 4,
+            paddingHorizontal: 16,
           }}
         >
           {/* Current time display */}
