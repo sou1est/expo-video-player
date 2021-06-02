@@ -568,7 +568,7 @@ const VideoPlayer = (props: Props) => {
         {
           position: 'absolute',
           left: (videoWidth - centeredContentWidth) / 2,
-          top: (videoHeight - centeredContentWidth) / 2,
+          top: (videoHeight - centeredContentWidth) / 1.82,
           width: centeredContentWidth,
           height: centeredContentWidth,
           flexDirection: 'column',
