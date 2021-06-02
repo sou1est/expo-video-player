@@ -66,7 +66,7 @@ const defaultProps = {
     videoBackground: '#000',
     // Callbacks
     errorCallback: (error) => console.error('Error: ', error.message, error.type, error.obj),
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
     playbackCallback: (callback) => { },
     switchToLandscape: () => console.warn(`Pass your logic to 'switchToLandscape' prop`),
     switchToPortrait: () => console.warn(`Pass your logic to 'switchToPortrait' prop`),
@@ -348,8 +348,8 @@ const VideoPlayer = (props) => {
         videoWidth = width;
         videoHeight = videoWidth / screenRatio;
     }
-    // Do not let the user override `ref`, `callback`, and `style`
-    // @ts-ignore
+    // @ts-expect-error Do not let the user override `ref`, `callback`, and `style`
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { videoRef, ref, style, onPlaybackStatusUpdate, source } = videoProps, otherVideoProps = __rest(videoProps, ["videoRef", "ref", "style", "onPlaybackStatusUpdate", "source"]);
     const Control = (_a) => {
         var { callback, center, children, transparent = false } = _a, otherProps = __rest(_a, ["callback", "center", "children", "transparent"]);
@@ -376,7 +376,7 @@ const VideoPlayer = (props) => {
                 {
                     position: 'absolute',
                     left: (videoWidth - centeredContentWidth) / 2,
-                    top: (videoHeight - centeredContentWidth) / 2,
+                    top: (videoHeight - centeredContentWidth) / 1.82,
                     width: centeredContentWidth,
                     height: centeredContentWidth,
                     flexDirection: 'column',
@@ -428,7 +428,7 @@ const VideoPlayer = (props) => {
         {/* Play/pause buttons */}
         {seekState !== SeekStates.Seeking &&
             (playbackState === PlaybackStates.Playing || playbackState === PlaybackStates.Paused) && (<CenteredView pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'} 
-        // @ts-ignore
+        // @ts-expect-error Bad TS types
         style={{ opacity: controlsOpacity }}>
               <Control center={true} callback={togglePlay}>
                 {/* Due to rerendering, we have to split them */}
@@ -450,14 +450,14 @@ const VideoPlayer = (props) => {
         {/* Bottom bar */}
         <Animated.View pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'} style={{
             position: 'absolute',
-            bottom: 0,
+            bottom: 100,
             width: videoWidth,
             opacity: controlsOpacity,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingBottom: 4,
-            paddingHorizontal: 4,
+            paddingHorizontal: 16,
         }}>
           {/* Current time display */}
           <Text style={[textStyle, { backgroundColor: 'transparent', marginLeft: 5 }]}>
